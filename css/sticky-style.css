@@ -82,6 +82,9 @@ li label{
 	left: 220px;
 	position: relative;
 	color:black;
+	z-index: 1;
+
+	font-family: "Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif;
 }
 
 .new-note{
@@ -89,8 +92,6 @@ li label{
 	height:170px;
 	background: #FFCB00;
 	font-size: 14px;
-	z-index: 100;
-
 	padding:10px;
 }
 .ui-draggable-dragging{
@@ -109,4 +110,20 @@ li label{
 	color:black;
 	font-family: arial;
 	padding:10px;
+}
+span.close{
+	position: absolute;
+	color:#626DA8;
+	top:8px;
+	left:165px;
+	cursor:pointer;
+	font-weight: bold;
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+	font-size: 18px;
+	display: none;
+}
+span.close:hover{
+	font-weight: bolder;
+	color: #666;
+	text-shadow: 0px 0px 2px black;
 }

@@ -4,15 +4,10 @@ var draggableOptions={
 	containment:'body',
 	cursor:'crosshair',
 	stack:'.note-pile',
-	
 	revert:'invalid',
 	revertDuration:500,
-	helper:function(event){
-		return $(this).clone(false);
-	},
-	drag:function(event){
-	
-	}
+	zIndex:100,
+	helper:'clone'
 }
 var droppableOptions={
 	tolerance:'touch',
@@ -29,6 +24,7 @@ var droppableOptions={
 		$(this).append($newNote);
 		$(this).droppable("option","disabled",true);
 		createNoteDrop();
+		addDeleteBtn();
 		event.preventDefault();
 	},
 }
@@ -47,10 +43,9 @@ function controller(){
 
 	$('.note-drop').droppable(droppableOptions);
 
-	$('.right-side').on('click','.note-drop',function(){
-		console.log('deleting');
-		$(this).remove();
-	})
+	enterToNote();
+	leaveFromNote();
+	deleteNote();
 }
 
 //creating a new note droppable area depending on number of
@@ -63,4 +58,30 @@ function createNoteDrop(){
 		$noteDrop.addClass("note-drop");
 		$noteDrop.droppable(droppableOptions);
 		$('.right-side').append($noteDrop);
+}
+function addDeleteBtn(){
+	var $note=$('.note-drop div');
+	var $delBtn=$('<span>').text('x').addClass('close');
+	$delBtn.appendTo($note);
+}
+
+function enterToNote(){
+	$(document).on("mouseenter",".note-drop div",function(event){
+		//console.log("mouse entering to note");
+		$(this).find('span.close').css("display","inline");
+	})
+}
+
+function leaveFromNote(){
+	$(document).on("mouseleave",".note-drop div",function(event){
+		//console.log("mouse leaving from note");
+		$(this).find('span.close').css("display","none");
+	})
+}
+
+function deleteNote(){
+	$(document).on('click','span.close',function(){
+		//console.log('deleting');
+		$(this).parents('.note-drop').remove();
+	})
 }
