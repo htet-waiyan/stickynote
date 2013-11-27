@@ -45,14 +45,14 @@ li label{
 	padding: 20px 10px 20px 10px;
 }
 .right-side{
-	width:800px;
+	width:650px;
 	height: auto;
 	float:right;
 
 	padding: 20px 10px 20px 10px;
 }
 .container{
-	width:95%;
+	width:1200px;
 	height:auto;
 
 	position: relative;
